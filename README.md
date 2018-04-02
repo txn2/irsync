@@ -36,7 +36,7 @@ goreleaser --skip-publish --rm-dist --skip-validate
 - Commit latest changes
 - [Tag] a version `git tag -a v1.4 -m "my version 1.4"`
 - Push tag `git push origin v1.5`
-- Run: `goreleaser`
+- Run: `goreleaser --rm-dist`
 
 ## Resources
 
