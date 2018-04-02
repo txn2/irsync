@@ -53,27 +53,6 @@ func (s *Sync) IntervalRSync() {
 	s.IntervalRSync()
 }
 
-// getArgs get rsync args
-func (s *Sync) getArgs() []string {
-	args := make([]string, 1)
-
-	// rsync flags
-	args = append(args, s.Flags)
-
-	// rsync --delete
-	if s.Delete {
-		args = append(args, "--delete")
-	}
-
-	// rsync from
-	args = append(args, s.LocationFrom)
-
-	// rsync to
-	args = append(args, s.LocationTo)
-
-	return args
-}
-
 // RSync runs the command rsync
 func (s *Sync) RSync() {
 	// ensure we have an initialized status struct
@@ -85,9 +64,12 @@ func (s *Sync) RSync() {
 
 	// Create Cmd with options
 	cmd := exec.Command("rsync", args...)
+	//s.Log.Info("rsyng args %s", cmd.Args)
 
-	//rsyncCmd := exec.Command("rsync", "-avzr", "--delete", "rsync://byp@sync.byp.mobi:31873/data/", "./data")
+	//cmd := exec.Command("rsync", "-avzr", "--delete", "rsync://byp@sync.byp.mobi:31873/data/", "./data")
 	//rsyncCmd := exec.Command("ping", "-i 1", "-c 5", "116.251.223.250")
+
+	s.Log.Info("rsync args %s", cmd.Args)
 
 	line := make(chan string)
 	done := make(chan bool)
@@ -112,6 +94,27 @@ func (s *Sync) RSync() {
 			return
 		}
 	}
+}
+
+// getArgs get rsync args
+func (s *Sync) getArgs() []string {
+	args := make([]string, 0)
+
+	// rsync flags
+	args = append(args, s.Flags)
+
+	// rsync --delete
+	if s.Delete {
+		args = append(args, "--delete")
+	}
+
+	// rsync from
+	args = append(args, s.LocationFrom)
+
+	// rsync to
+	args = append(args, s.LocationTo)
+
+	return args
 }
 
 // initStatus initialize status if empty

@@ -4,6 +4,8 @@ import (
 	"os"
 	"time"
 
+	"strconv"
+
 	"github.com/bhoriuchi/go-bunyan/bunyan"
 	"github.com/cjimti/irsync/irsync"
 )
@@ -23,14 +25,33 @@ func main() {
 
 	blog.Info("Starting irsync...")
 
+	envIntervalSeconds := getEnv("IRSYNC_INTERVAL", "10") // default 10 seconds
+	intervalSeconds, err := strconv.Atoi(envIntervalSeconds)
+	if err != nil {
+		blog.Info("IRSYNC_INTERVAL can not be converted to a number representing seconds.")
+	}
+
+	envTimeoutSeconds := getEnv("IRSYNC_TIMEOUT", "7200") // default 2 hours
+	timeoutSeconds, err := strconv.Atoi(envTimeoutSeconds)
+	if err != nil {
+		blog.Info("IRSYNC_TIMEOUT can not be converted to a number representing seconds.")
+	}
+
+	deleteFiles := false
+
+	encDelete := getEnv("IRSYNC_DELETE", "false")
+	if encDelete == "true" {
+		deleteFiles = true
+	}
+
 	sync := irsync.Sync{
 		Log:             &blog,
-		ActivityTimeout: 2 * time.Hour,    // no file should take more than 2 hours
-		Interval:        10 * time.Second, // run again in 10 seconds after rsync completes
-		LocationFrom:    getEnv("IRSYNC_FROM", "rsync://byp@sync.byp.mobi:31873/data/"),
+		ActivityTimeout: time.Duration(timeoutSeconds) * time.Second,
+		Interval:        time.Duration(intervalSeconds) * time.Second,
+		LocationFrom:    getEnv("IRSYNC_FROM", "./"),
 		LocationTo:      getEnv("IRSYNC_TO", "./data"),
 		Flags:           getEnv("IRSYNC_FLAGS", "-avzr"),
-		Delete:          false,
+		Delete:          deleteFiles,
 	}
 
 	// run rsync on interval (blocking)
