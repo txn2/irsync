@@ -8,7 +8,7 @@ Source: https://github.com/cjimti/irsync
 [![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/cjimti/irsync/1.0.0.svg)](https://hub.docker.com/r/cjimti/irsync/)
 [![Docker Container Pulls](https://img.shields.io/docker/pulls/cjimti/irsync.svg)](https://hub.docker.com/r/cjimti/irsync/)
 
-Command line utility and [Docker] container for running [rsync] on interval.
+Command line utility and [Docker] container for running [rsync] on an interval.
 
 ## Run Container
 
@@ -29,12 +29,12 @@ cjimti/irsync:1.0.0
 
 ## Environment Configuration
 
-- `IRSYNC_INTERVAL=10` Start next interval 10 seconds after last completion.
-- `IRSYNC_TIMEOUT=7200` Timout rsync and start next interval if time exceds 7200 seconds.
+- `IRSYNC_INTERVAL=10` Start next interval 10 seconds after the last completion.
+- `IRSYNC_TIMEOUT=7200` Timeout rsync and start next interval if the time exceeds 7200 seconds.
 - `IRSYNC_FROM=./` rsync from location
-- `IRSYNC_TO=./data` rync to location
+- `IRSYNC_TO=./data` rsync to location
 - `IRSYNC_FLAGS=`-avzr` rsync flags (verbose is required)
-- `IRSYNC_DELETE=false` resync --delete flag if set to true
+- `IRSYNC_DELETE=false` resync --delete flag added if set to true.
 
 ## Development
 
