@@ -4,7 +4,7 @@
 Source: https://github.com/cjimti/irsync
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/cjimti/irsync)](https://goreportcard.com/report/github.com/cjimti/irsync)
-[![GoDoc](https://godoc.org/github.com/cjimti/iotwifi/irsync?status.svg)](https://godoc.org/github.com/cjimti/iotwifi/irsync)
+[![GoDoc](https://godoc.org/github.com/cjimti/irsync/irsync?status.svg)](https://godoc.org/github.com/cjimti/iotwifi/irsync)
 [![Docker Container Image Size](https://shields.beevelop.com/docker/image/image-size/cjimti/irsync/1.0.0.svg)](https://hub.docker.com/r/cjimti/irsync/)
 [![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/cjimti/irsync/1.0.0.svg)](https://hub.docker.com/r/cjimti/irsync/)
 [![Docker Container Pulls](https://img.shields.io/docker/pulls/cjimti/irsync.svg)](https://hub.docker.com/r/cjimti/irsync/)
