@@ -1,0 +1,50 @@
+# Use for testing Interval rSync
+#
+# This docker compose file creates server and
+# client services, mounting ./data/dest and ./data/source
+# respectivly.
+#
+# source: https://hub.docker.com/r/cjimti/irsync/
+# irsync docker image: https://hub.docker.com/r/cjimti/irsync/
+# rsyncd docker image: https://hub.docker.com/r/cjimti/rsyncd/ (or use any rsync server)
+#
+version: '3'
+
+# Setting up an internal network allow us to use the
+# default port and not wory about exposing ports on our
+# host.
+#
+networks:
+  sync-net:
+
+services:
+  server:
+    image: "cjimti/rsyncd"
+    container_name: rsyncd-server
+    environment:
+      - USERNAME=test
+      - PASSWORD=password
+      - VOLUME_PATH=/source_data
+      - READ_ONLY=true
+      - CHROOT=yes
+      - VOLUME_NAME=source_data
+      - HOSTS_ALLOW=0.0.0.0/0
+    volumes:
+      - ./data/source:/source_data
+    networks:
+      - sync-net
+  client:
+    image: "cjimti/irsync"
+    container_name: irsync-client
+    environment:
+      - RSYNC_PASSWORD=password
+      - IRSYNC_INTERVAL=30
+      - IRSYNC_FROM=rsync://test@rsyncd-server:873/source_data/
+      - IRSYNC_TO=/data/
+      - IRSYNC_DELETE=false
+    volumes:
+      - ./data/dest:/data
+    depends_on:
+      - server
+    networks:
+      - sync-net
