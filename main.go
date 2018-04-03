@@ -50,7 +50,7 @@ func main() {
 		Interval:        time.Duration(intervalSeconds) * time.Second,
 		LocationFrom:    getEnv("IRSYNC_FROM", "./"),
 		LocationTo:      getEnv("IRSYNC_TO", "./data"),
-		Flags:           getEnv("IRSYNC_FLAGS", "-avzr"),
+		Flags:           getEnv("IRSYNC_FLAGS", "-ogplvrt"),
 		Delete:          deleteFiles,
 	}
 
