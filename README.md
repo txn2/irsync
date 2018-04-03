@@ -73,7 +73,7 @@ docker run --rm \
 - `IRSYNC_TIMEOUT=7200` Timeout rsync and start next interval if the time exceeds 7200 seconds.
 - `IRSYNC_FROM=./` rsync from location
 - `IRSYNC_TO=./data` rsync to location
-- `IRSYNC_FLAGS=`-avzr` rsync flags (verbose is required)
+- `IRSYNC_FLAGS=-pvrt` rsync flags (verbose is required)
 - `IRSYNC_DELETE=false` resync --delete flag added if set to true.
 
 ## Development
