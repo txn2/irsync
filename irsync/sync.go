@@ -64,11 +64,8 @@ func (s *Sync) RSync() {
 
 	// Create Cmd with options
 	cmd := exec.Command("rsync", args...)
-	//s.Log.Info("rsyng args %s", cmd.Args)
 
-	//cmd := exec.Command("rsync", "-avzr", "--delete", "rsync://byp@sync.byp.mobi:31873/data/", "./data")
-	//rsyncCmd := exec.Command("ping", "-i 1", "-c 5", "116.251.223.250")
-
+	// output command we are using
 	s.Log.Info("rsync args %s", cmd.Args)
 
 	line := make(chan string)
