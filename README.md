@@ -48,10 +48,6 @@ docker-compose rm
 
 ```
 
-
-
-
-
 ## Run Container
 
 #### Example #1
@@ -60,13 +56,13 @@ Sync files from a remote server on 30 second interval
 
 ```bash
 docker run --rm \
--v "$(pwd)"/data:/data \
--e RSYNC_PASSWORD=password \
--e IRSYNC_INTERVAL=30 \
--e IRSYNC_FROM="rsync://user@example.com:873/data/" \
--e IRSYNC_TO="./data" \
--e IRSYNC_DELETE=true \
-cjimti/irsync:1.0.0
+    -v "$(pwd)"/data:/data \
+    -e RSYNC_PASSWORD=password \
+    -e IRSYNC_INTERVAL=30 \
+    -e IRSYNC_FROM=rsync://user@example.com:873/data/"\
+    -e IRSYNC_TO=./data \
+    -e IRSYNC_DELETE=true \
+    cjimti/irsync
 ```
 
 ## Environment Configuration
