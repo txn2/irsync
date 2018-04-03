@@ -14,7 +14,7 @@ type Logger interface {
 	Info(args ...interface{})
 }
 
-// Stats provides access to the current state of
+// Status provides access to the current state of
 // sync and interval status.
 type Status struct {
 	CurrentInterval int
@@ -33,7 +33,7 @@ type Sync struct {
 	LocationTo      string // srync location to
 }
 
-// Endlessly run RSync on interval
+// IntervalRSync endlessly runs RSync on interval
 func (s *Sync) IntervalRSync() {
 	// ensure we have an initialized status struct
 	s.initStatus()
