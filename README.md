@@ -10,6 +10,47 @@ Source: https://github.com/cjimti/irsync
 
 Command line utility and [Docker] container for running [rsync] on an interval.
 
+## Demo
+
+Setup a quick demo using [Docker]s `docker-compose` command. Included with this project is a `docker-compose.yaml` with a simple client/server setup. In this composer configuration `irsync` is set to check the server every 30 seconds (after sync is complete. The server mounts the `./data/source` directory and the client mounts the `./data/dest` directory. Drop files in `./data/source` and see them appear in `./data/dest`.
+
+**Setup and run demo (requires [Docker]):**
+
+```bash
+# create a source and dest directories (mounted from the docker-compose)
+mkdir -p ./data/source
+mkdir -p ./data/dest
+
+# make a couple of sample files
+touch ./data/source/test1.txt
+touch ./data/source/test2.txt
+
+# get the docker-compose.yml
+curl https://raw.githubusercontent.com/cjimti/irsync/master/docker-compose.yml >docker-compose.yml
+
+# run docker-compose in the background (-d flag)
+docker-compose up -d
+
+# view logs
+docker-compose logs -f
+
+# drop some more files in the ./data/source directory
+# irsync is configured to check every 30 seconds in this demo.
+
+#### Cleanup
+
+# stop containers
+docker-compose stop
+
+# remove containers
+docker-compose rm
+
+```
+
+
+
+
+
 ## Run Container
 
 #### Example #1
