@@ -15,7 +15,7 @@ Command line utility and [Docker] container for running [rsync] on an interval.
 
 ## Background
 
-I wrote up a little background on the motivation behind **irsync** on my mk blog, [rSync Files on Interval(https://mk.imti.co/raspberry-pi-rsync-interval/).
+I wrote up a little background on the motivation behind **irsync** on my mk blog, [rSync Files on Interval](https://mk.imti.co/raspberry-pi-rsync-interval/).
 
 ## Demo
 
