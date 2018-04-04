@@ -34,7 +34,7 @@ services:
     networks:
       - sync-net
   client:
-    image: "cjimti/irsync"
+    image: "cjimti/irsync:1.0.3"
     container_name: irsync-client
     environment:
       - RSYNC_PASSWORD=password
