@@ -29,6 +29,7 @@ type Sync struct {
 	Status          Status
 	Flags           string
 	Delete          bool   // rsync --delete
+	ModifyWindow    string // rsync --modify-window=5 (fat filesystems can fluctuate 2-3 seconds on re-mount)
 	LocationFrom    string // rsync location from
 	LocationTo      string // srync location to
 }
@@ -99,6 +100,14 @@ func (s *Sync) getArgs() []string {
 
 	// rsync flags
 	args = append(args, s.Flags)
+
+	// set a default
+	if s.ModifyWindow == "" {
+		s.ModifyWindow = "5"
+	}
+
+	// rsync --modify-window=5 (for mounted fat file systems)
+	args = append(args, "--modify-window="+s.ModifyWindow)
 
 	// rsync --delete
 	if s.Delete {

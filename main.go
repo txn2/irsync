@@ -48,6 +48,7 @@ func main() {
 		Log:             &blog,
 		ActivityTimeout: time.Duration(timeoutSeconds) * time.Second,
 		Interval:        time.Duration(intervalSeconds) * time.Second,
+		ModifyWindow:    getEnv("IRSYNC_MWINDOW", "5"),
 		LocationFrom:    getEnv("IRSYNC_FROM", "./"),
 		LocationTo:      getEnv("IRSYNC_TO", "./data"),
 		Flags:           getEnv("IRSYNC_FLAGS", "-pvrt"),
