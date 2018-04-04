@@ -13,9 +13,15 @@ Source: https://github.com/cjimti/irsync
 
 Command line utility and [Docker] container for running [rsync] on an interval.
 
+## Background
+
+I wrote up a little background on the motivation behind **irsync** on my mk blog, [rSync Files on Interval](https://mk.imti.co/raspberry-pi-rsync-interval/).
+
 ## Demo
 
 Setup a quick demo using [Docker]s `docker-compose` command. Included with this project is a `docker-compose.yaml` with a simple client/server setup. In this composer configuration `irsync` is set to check the server every 30 seconds (after sync is complete. The server mounts the `./data/source` directory and the client mounts the `./data/dest` directory. Drop files in `./data/source` and see them appear in `./data/dest`.
+
+[Watch a 2 minute youtube video demoing the commands below](https://www.youtube.com/watch?v=gT_P2a-xpPw)
 
 **Setup and run demo (requires [Docker]):**
 
