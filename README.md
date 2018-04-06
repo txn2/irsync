@@ -1,4 +1,4 @@
-[![irsync: interval rsync](https://raw.githubusercontent.com/cjimti/irsync/master/irsync.png)](https://github.com/cjimti/irsync)
+[![irsync: interval rsync](https://raw.githubusercontent.com/cjimti/irsync/master/irsync-mast.png)](https://github.com/cjimti/irsync)
 # Interval [rsync]
 
 Source: https://github.com/cjimti/irsync
