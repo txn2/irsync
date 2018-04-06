@@ -9,7 +9,7 @@ import (
 )
 
 // Logger provides an interface for any logging
-// packing providing a Info(args ...interface{}) method
+// package providing a Info(args ...interface{}) method
 type Logger interface {
 	Info(args ...interface{})
 }
