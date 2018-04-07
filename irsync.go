@@ -69,7 +69,7 @@ func main() {
 
 // parseArgs pulls out irsync specific args
 func parseCmdArgs(args []string) ([]string, map[string]string) {
-	rsyncArgs := []string{}
+	rsyncArgs := make([]string, 0)
 	irsyncArgs := map[string]string{}
 
 	for _, arg := range args {
