@@ -11,7 +11,14 @@ Source: https://github.com/cjimti/irsync
 [![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/cjimti/irsync/1.0.0.svg)](https://hub.docker.com/r/cjimti/irsync/)
 [![Docker Container Pulls](https://img.shields.io/docker/pulls/cjimti/irsync.svg)](https://hub.docker.com/r/cjimti/irsync/)
 
-Command line utility and [Docker] container for running [rsync] on an interval.
+Command line utility and [Docker] container for running [rsync] on an interval. rsync, synchronizes (one way) files between two sources, **irsync** wrapps [rsync] and runs it on a specified interval.
+
+As a basic command-line utility, the only requirement is [rsync]. As a [Docker] container the conly requirement is [Docker]. The docker container size with all the requirements is only around 5 megs.
+
+## Background
+
+I wrote up a little background on the motivation behind v1 **irsync** on my mk blog, [rSync Files on Interval](https://mk.imti.co/raspberry-pi-rsync-interval/).
+
 
 ## Demo
 
@@ -77,6 +84,15 @@ docker run --rm -v "$(pwd)"/data:/data cjimti/irsync \
     -pvrt --delete /data/source/ /data/dest/
 ```
 
+#### Example #3 Server to Local - Restart on Failure
+
+```bash
+docker run -d --name irsync-demo --restart on-failure \
+    -v "$(pwd)"/data:/data cjimti/irsync \
+    --irsync-interval-seconds=10 \
+    -pvrt --delete /data/source/ /data/dest/
+```
+
 ## Environment Configuration
 
 - `RSYNC_PASSWORD=password` Use environment variable `RSYNC_PASSWORD` to keep from being prompted for a password for servers requiring authentication.
@@ -113,9 +129,6 @@ goreleaser --skip-publish --rm-dist --skip-validate
 - [rsync]
 - [homebrew]
 
-## Background
-
-I wrote up a little background on the motivation behind v1 **irsync** on my mk blog, [rSync Files on Interval](https://mk.imti.co/raspberry-pi-rsync-interval/).
 
 [homebrew]: https://brew.sh/
 [brew]: https://brew.sh/
