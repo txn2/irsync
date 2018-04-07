@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/cjimti/irsync",
+	"GoVersion": "go1.10",
+	"GodepVersion": "v80",
+	"Deps": [
+		{
+			"ImportPath": "github.com/bhoriuchi/go-bunyan/bunyan",
+			"Rev": "8815b5fdce8c649679da0123c957d4b5e4b6f8ca"
+		}
+	]
+}
