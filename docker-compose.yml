@@ -34,10 +34,18 @@ services:
     networks:
       - sync-net
   client:
-    image: "cjimti/irsync:1.1.0"
+    image: "cjimti/irsync"
     container_name: irsync-client
     environment:
-      - RSYNC_PASSWORD=sompassword
+      - RSYNC_PASSWORD=password
+    command: [
+      "--irsync-interval-seconds=30",
+      "-pvrt",
+      "--delete",
+      "--modify-window=2",
+      "rsync://test@rsyncd-server:873/source_data/",
+      "/data/"
+    ]
     volumes:
       - ./data/dest:/data
     depends_on:
