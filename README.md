@@ -1,4 +1,5 @@
 [![irsync: interval rsync](irsync-mast.jpg)](https://github.com/cjimti/irsync)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcjimti%2Firsync.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcjimti%2Firsync?ref=badge_shield)
 # Interval [rsync]
 
 Source: https://github.com/cjimti/irsync
@@ -138,3 +139,7 @@ goreleaser --skip-publish --rm-dist --skip-validate
 [rsync]: https://en.wikipedia.org/wiki/Rsync
 [Tag]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
 [mk.imti.co]: https://mk.imti.co
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcjimti%2Firsync.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcjimti%2Firsync?ref=badge_large)
