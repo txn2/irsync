@@ -66,7 +66,7 @@ docker-compose rm
 #### Example #1 Local with interval defaults
 
 ```bash
-go run ./irsync.go -pvrt --delete ./data/source/ ./data/dest/
+go run ./irsync.go -pvrt --exclude='custom' --exclude='playlist custom.txt' --delete ./data/source/ ./data/dest/
 ```
 
 ## Run From Container
@@ -93,6 +93,42 @@ docker run -d --name irsync-demo --restart on-failure \
     -v "$(pwd)"/data:/data cjimti/irsync \
     --irsync-interval-seconds=10 \
     -pvrt --delete /data/source/ /data/dest/
+```
+
+#### Example#4: Custom container
+
+Create `Dockerfile`:
+```bash
+FROM cjimti/irsync:2.0.0
+LABEL vendor="mk.imti.co"
+LABEL co.imti.mk.source="https://github.com/cjimti/irsync"
+
+# if the rsync server requires a password
+ENV RSYNC_PASSWORD=password
+
+# exampe: keep local synchronized with server
+# interval default: --irsync-interval-seconds=120
+# activity timout default: --irsync-timeout-seconds=7200
+CMD ["-pvrt", "--modify-window=30", "--delete", "--exclude='fun'", "rsync://sync@mk.imti.co:873/data/", "/media"]
+```
+
+Build:
+
+```bash
+docker build -t custom-sync .
+```
+
+Run:
+
+```bash
+docker run -d --name custom-sync --restart on-failure \
+    -v "$(pwd)"/data:/data custom-sync
+```
+
+Logs:
+
+```bash
+docker logs -f custom-sync
 ```
 
 ## Environment Configuration
