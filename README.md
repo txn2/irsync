@@ -21,8 +21,6 @@ I wrote up a little background on the motivation behind **irsync** on my mk blog
 
 Setup a quick demo using [Docker]s `docker-compose` command. Included with this project is a `docker-compose.yaml` with a simple client/server setup. In this composer configuration `irsync` is set to check the server every 30 seconds (after sync is complete. The server mounts the `./data/source` directory and the client mounts the `./data/dest` directory. Drop files in `./data/source` and see them appear in `./data/dest`.
 
-[Watch a 2 minute youtube video demoing the commands below](https://www.youtube.com/watch?v=gT_P2a-xpPw)
-
 **Setup and run demo (requires [Docker]):**
 
 ```bash
@@ -64,48 +62,26 @@ docker-compose rm
 go run ./irsync.go -pvrt --delete ./data/source/ ./data/dest/
 ```
 
-
-
-## Run Container
+## Run From Container
 
 #### Example #1 Local
 
 ```bash
-docker run --rm \
-    -v "$(pwd)"/data/source:/data-source \
-    -v "$(pwd)"/data/dest:/data-dest \
-    -e IRSYNC_INTERVAL=30 \
-    -e IRSYNC_FROM=/data-source \
-    -e IRSYNC_TO=/data-dest \
-    -e IRSYNC_DELETE=true \
-    cjimti/irsync
+docker run --rm -v "$(pwd)"/data:/data cjimti/irsync \
+    -pvrt --delete /data/source/ /data/dest/
 ```
 
-#### Example #2 From Server
-
-Sync files from a remote server on 30 second interval
+#### Example #2 Local Every 10 Seconds
 
 ```bash
-docker run --rm \
-    -v "$(pwd)"/data:/data \
-    -e RSYNC_PASSWORD=password \
-    -e IRSYNC_INTERVAL=30 \
-    -e IRSYNC_FROM=rsync://user@example.com:873/data/"\
-    -e IRSYNC_TO=./data \
-    -e IRSYNC_DELETE=true \
-    cjimti/irsync
+docker run --rm -v "$(pwd)"/data:/data cjimti/irsync \
+    --irsync-interval-seconds=10 \
+    -pvrt --delete /data/source/ /data/dest/
 ```
-
-
 
 ## Environment Configuration
 
-- `IRSYNC_INTERVAL=10` Start next interval 10 seconds after the last completion.
-- `IRSYNC_TIMEOUT=7200` Timeout rsync and start next interval if the time exceeds 7200 seconds.
-- `IRSYNC_FROM=./` rsync from location
-- `IRSYNC_TO=./data` rsync to location
-- `IRSYNC_FLAGS=-pvrt` rsync flags (verbose is required)
-- `IRSYNC_DELETE=false` resync --delete flag added if set to true.
+- `RSYNC_PASSWORD=password` Use environment variable `RSYNC_PASSWORD` to keep from being prompted for a password for servers requiring authentication.
 
 ## Development
 

@@ -1,6 +1,6 @@
 # Build customization
 build:
-  main: ./main.go
+  main: ./irsync.go
   binary: irsync
 
   ldflags: -a -installsuffix cgo
@@ -50,6 +50,7 @@ dockers:
     image: cjimti/irsync
     dockerfile: dockerfiles/amd64/Dockerfile
     tag_templates:
+    - latest
     - "{{ .Version }}"
   -
     goos: linux

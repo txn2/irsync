@@ -37,11 +37,7 @@ services:
     image: "cjimti/irsync:1.1.0"
     container_name: irsync-client
     environment:
-      - RSYNC_PASSWORD=password
-      - IRSYNC_INTERVAL=30
-      - IRSYNC_FROM=rsync://test@rsyncd-server:873/source_data/
-      - IRSYNC_TO=/data/
-      - IRSYNC_DELETE=false
+      - RSYNC_PASSWORD=sompassword
     volumes:
       - ./data/dest:/data
     depends_on:
