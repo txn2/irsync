@@ -38,6 +38,16 @@ services:
     container_name: irsync-client
     environment:
       - RSYNC_PASSWORD=password
+
+    # irsync and rsync options can be intermixed.
+    #
+    # irsync - has two configuration directives:
+    #     --irsync-interval-seconds=SECONDS  number of seconds between intervals
+    #     --irsync-timeout-seconds=SECONDS   number of seconds allowed for inactivity
+    #
+    # rsync has over one hundred options:
+    #     see: https://download.samba.org/pub/rsync/rsync.html
+    #
     command: [
       "--irsync-interval-seconds=30",
       "-pvrt",
