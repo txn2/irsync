@@ -7,6 +7,7 @@ Source: https://github.com/cjimti/irsync
 [![Go Report Card](https://goreportcard.com/badge/github.com/cjimti/irsync)](https://goreportcard.com/report/github.com/cjimti/irsync)
 [![GoDoc](https://godoc.org/github.com/cjimti/irsync/irsync?status.svg)](https://godoc.org/github.com/cjimti/irsync/irsync)
 [![Build Status](https://travis-ci.org/cjimti/irsync.svg?branch=master)](https://travis-ci.org/cjimti/irsync)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcjimti%2Firsync.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcjimti%2Firsync?ref=badge_shield)
 
 [![Docker Container Image Size](https://shields.beevelop.com/docker/image/image-size/cjimti/irsync/1.0.0.svg)](https://hub.docker.com/r/cjimti/irsync/)
 [![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/cjimti/irsync/1.0.0.svg)](https://hub.docker.com/r/cjimti/irsync/)
