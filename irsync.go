@@ -30,28 +30,10 @@ func main() {
 	rsyncArgs, irsyncArgs := parseCmdArgs(os.Args[1:])
 
 	// default activity timeout
-	activityTimeout := 7200
-	if secs, ok := irsyncArgs["--irsync-timeout-seconds"]; ok {
-		at, err := strconv.Atoi(secs)
-		if err != nil {
-			fmt.Println("value for --irsync-timeout-seconds must be a postive integer (seconds).")
-			os.Exit(1)
-		}
-
-		activityTimeout = at
-	}
+	activityTimeout := getIntegerFromArgs("--irsync-timeout-seconds", irsyncArgs, 7200)
 
 	// default interval
-	interval := 120
-	if secs, ok := irsyncArgs["--irsync-interval-seconds"]; ok {
-		itvl, err := strconv.Atoi(secs)
-		if err != nil && itvl > 0 {
-			fmt.Println("value for --irsync-interval-seconds must be a postive integer (seconds).")
-			os.Exit(1)
-		}
-
-		interval = itvl
-	}
+	interval := getIntegerFromArgs("--irsync-interval-seconds", irsyncArgs, 120)
 
 	fmt.Printf("Timeout: %d, Interval: %d\n", activityTimeout, interval)
 
@@ -65,6 +47,24 @@ func main() {
 	// run rsync on interval (block)
 	<-sync.Run()
 
+}
+
+// getIntegerFromArgs returns an integer if key exists or falls back
+// os exits if key exists and cannot be converted to an int
+func getIntegerFromArgs(key string, args map[string]string, fallback int) int {
+	v := fallback
+
+	if nvStr, ok := args[key]; ok {
+		nv, err := strconv.Atoi(nvStr)
+		if err != nil {
+			fmt.Printf("value for %s must be a postive integer got %d.", key, nv)
+			os.Exit(1)
+		}
+
+		v = nv
+	}
+
+	return v
 }
 
 // parseArgs pulls out irsync specific args
