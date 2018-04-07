@@ -17,7 +17,7 @@ As a basic command-line utility, the only requirement is [rsync]. As a [Docker] 
 
 ## Background
 
-I wrote up a little background on the motivation behind v1 **irsync** on my mk blog, [rSync Files on Interval](https://mk.imti.co/raspberry-pi-rsync-interval/).
+I wrote up a little background on the motivation behind **irsync** on my [mk.imti.co] blog, [rSync Files on Interval](https://mk.imti.co/raspberry-pi-rsync-interval/).
 
 
 ## Demo
@@ -136,3 +136,4 @@ goreleaser --skip-publish --rm-dist --skip-validate
 [Docker]: https://www.docker.com/
 [rsync]: https://en.wikipedia.org/wiki/Rsync
 [Tag]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
+[mk.imti.co]: https://mk.imti.co
