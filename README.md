@@ -131,6 +131,10 @@ goreleaser --skip-publish --rm-dist --skip-validate
 - [rsync]
 - [homebrew]
 
+## Open Source
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcjimti%2Firsync.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcjimti%2Firsync?ref=badge_large)
+
 
 [homebrew]: https://brew.sh/
 [brew]: https://brew.sh/
