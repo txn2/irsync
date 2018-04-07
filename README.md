@@ -3,7 +3,7 @@
 
 Source: https://github.com/cjimti/irsync
 
-[![Maintainability](https://api.codeclimate.com/v1/badges//maintainability)](https://codeclimate.com/github/cjimti/irsync)
+[![Maintainability](https://api.codeclimate.com/v1/badges/17e7ef41f16a004d020f/maintainability)](https://codeclimate.com/github/cjimti/irsync/maintainability)
 [![Go Report Card](https://goreportcard.com/badge/github.com/cjimti/irsync)](https://goreportcard.com/report/github.com/cjimti/irsync)
 [![GoDoc](https://godoc.org/github.com/cjimti/irsync/irsync?status.svg)](https://godoc.org/github.com/cjimti/iotwifi/irsync)
 
