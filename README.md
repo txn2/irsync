@@ -56,9 +56,32 @@ docker-compose rm
 
 ```
 
+## Run From Source
+
+#### Example #1 Local with interval defaults
+
+```bash
+go run ./irsync.go -pvrt --delete ./data/source/ ./data/dest/
+```
+
+
+
 ## Run Container
 
-#### Example #1
+#### Example #1 Local
+
+```bash
+docker run --rm \
+    -v "$(pwd)"/data/source:/data-source \
+    -v "$(pwd)"/data/dest:/data-dest \
+    -e IRSYNC_INTERVAL=30 \
+    -e IRSYNC_FROM=/data-source \
+    -e IRSYNC_TO=/data-dest \
+    -e IRSYNC_DELETE=true \
+    cjimti/irsync
+```
+
+#### Example #2 From Server
 
 Sync files from a remote server on 30 second interval
 
@@ -72,6 +95,8 @@ docker run --rm \
     -e IRSYNC_DELETE=true \
     cjimti/irsync
 ```
+
+
 
 ## Environment Configuration
 

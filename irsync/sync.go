@@ -27,11 +27,16 @@ type Sync struct {
 	ActivityTimeout time.Duration
 	Interval        time.Duration
 	Status          Status
-	Flags           string
-	Delete          bool   // rsync --delete
-	ModifyWindow    string // rsync --modify-window=5 (fat filesystems can fluctuate 2-3 seconds on re-mount)
-	LocationFrom    string // rsync location from
-	LocationTo      string // srync location to
+	RsyncArgs       []string // rsync arguments including to and from
+	cmd             *exec.Cmd
+}
+
+// Run Interval rSync
+func (s *Sync) Run() chan bool {
+	done := make(chan bool, 1)
+	go s.IntervalRSync()
+
+	return done
 }
 
 // IntervalRSync endlessly runs RSync on interval
@@ -52,6 +57,7 @@ func (s *Sync) IntervalRSync() {
 	s.Status.CurrentInterval++
 	// interval
 	s.IntervalRSync()
+
 }
 
 // RSync runs the command rsync
@@ -60,18 +66,16 @@ func (s *Sync) RSync() {
 	s.initStatus()
 	s.Status.LineN = 0
 
-	// initialize command args
-	args := s.getArgs()
-
 	// Create Cmd with options
-	cmd := exec.Command("rsync", args...)
+	s.cmd = exec.Command("rsync", s.RsyncArgs...)
 
 	// output command we are using
-	s.Log.Info("rsync args %s", cmd.Args)
+	s.Log.Info("rsync args %s", s.cmd.Args)
 
 	line := make(chan string)
+	cmdErr := make(chan string)
 	done := make(chan bool)
-	go s.runCommand(cmd, line, done)
+	go s.runCommand(s.cmd, line, cmdErr, done)
 
 	for {
 		select {
@@ -94,35 +98,6 @@ func (s *Sync) RSync() {
 	}
 }
 
-// getArgs get rsync args
-func (s *Sync) getArgs() []string {
-	args := make([]string, 0)
-
-	// rsync flags
-	args = append(args, s.Flags)
-
-	// set a default
-	if s.ModifyWindow == "" {
-		s.ModifyWindow = "5"
-	}
-
-	// rsync --modify-window=5 (for mounted fat file systems)
-	args = append(args, "--modify-window="+s.ModifyWindow)
-
-	// rsync --delete
-	if s.Delete {
-		args = append(args, "--delete")
-	}
-
-	// rsync from
-	args = append(args, s.LocationFrom)
-
-	// rsync to
-	args = append(args, s.LocationTo)
-
-	return args
-}
-
 // initStatus initialize status if empty
 func (s *Sync) initStatus() {
 	if s.Status == (Status{}) {
@@ -134,18 +109,31 @@ func (s *Sync) initStatus() {
 }
 
 // runCommand is a generic command runner
-func (s *Sync) runCommand(cmd *exec.Cmd, line chan string, done chan bool) {
+func (s *Sync) runCommand(cmd *exec.Cmd, line chan string, cmdErr chan string, done chan bool) {
 
-	cmdReader, err := cmd.StdoutPipe()
+	cmdReaderPipe, err := cmd.StdoutPipe()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error creating StdoutPipe for Cmd", err)
 		os.Exit(1)
 	}
 
-	scanner := bufio.NewScanner(cmdReader)
+	lineScanner := bufio.NewScanner(cmdReaderPipe)
 	go func() {
-		for scanner.Scan() {
-			line <- scanner.Text()
+		for lineScanner.Scan() {
+			line <- lineScanner.Text()
+		}
+	}()
+
+	cmdErrorPipe, err := cmd.StderrPipe()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error creating StderrPipe for Cmd", err)
+		os.Exit(1)
+	}
+
+	errScanner := bufio.NewScanner(cmdErrorPipe)
+	go func() {
+		for errScanner.Scan() {
+			line <- errScanner.Text()
 		}
 	}()
 
