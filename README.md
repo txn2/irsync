@@ -66,7 +66,7 @@ docker-compose rm
 #### Example #1 Local with interval defaults
 
 ```bash
-go run ./irsync.go -pvrt --exclude='custom' --exclude='playlist custom.txt' --delete ./data/source/ ./data/dest/
+go run ./irsync.go -pvrt --exclude='custom' --exclude='special.txt' --delete ./data/source/ ./data/dest/
 ```
 
 ## Run From Container
