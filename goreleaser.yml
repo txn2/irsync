@@ -61,3 +61,20 @@ dockers:
     dockerfile: dockerfiles/arm/Dockerfile
     tag_templates:
     - "armhf-{{ .Version }}"
+
+brew:
+  name: irsync
+
+  github:
+    owner: cjimti
+    name: homebrew-tap
+
+  commit_author:
+    name: Craig Johnston
+    email: cjimti@gmail.com
+
+  folder: Formula
+
+  homepage: https://github.com/cjimti/irsync
+
+  description: "Interval rsync."
