@@ -75,6 +75,9 @@ brew:
 
   folder: Formula
 
+  dependencies:
+    - rsync
+
   homepage: https://github.com/cjimti/irsync
 
   description: "Interval rsync."
