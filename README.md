@@ -61,6 +61,27 @@ docker-compose rm
 
 ```
 
+## Run on MacOS
+
+**Install**
+```bash
+brew tap cjimti/homebrew-tap
+brew install irsync
+```
+
+**Update** (when new versions are released)
+```bash
+brew upgrade irsync
+```
+
+**Run**
+Prints the rsync version every 5 seconds.
+```bash
+irsync --irsync-interval-seconds=5 --version 
+```
+
+Adjust the interval to your requirement and add `rsync` flags as you normally would.
+
 ## Run From Source
 
 #### Example #1 Local with interval defaults
