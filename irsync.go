@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/bhoriuchi/go-bunyan/bunyan"
-	"github.com/cjimti/irsync/irsync"
+	"github.com/txn2/irsync/irsync"
 )
 
 func main() {

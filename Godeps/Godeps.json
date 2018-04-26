@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/cjimti/irsync",
+	"ImportPath": "github.com/txn2/irsync",
 	"GoVersion": "go1.10",
 	"GodepVersion": "v80",
 	"Deps": [

@@ -1,19 +1,19 @@
-[![irsync: interval rsync](irsync-mast.jpg)](https://github.com/cjimti/irsync)
+[![irsync: interval rsync](irsync-mast.jpg)](https://github.com/txn2/irsync)
 
-[![irsync Release](https://img.shields.io/github/release/cjimti/irsync.svg)](https://github.com/cjimti/irsync/releases)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcjimti%2Firsync.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcjimti%2Firsync?ref=badge_shield)
-[![Maintainability](https://api.codeclimate.com/v1/badges/17e7ef41f16a004d020f/maintainability)](https://codeclimate.com/github/cjimti/irsync/maintainability)
-[![Go Report Card](https://goreportcard.com/badge/github.com/cjimti/irsync)](https://goreportcard.com/report/github.com/cjimti/irsync)
-[![GoDoc](https://godoc.org/github.com/cjimti/irsync/irsync?status.svg)](https://godoc.org/github.com/cjimti/irsync/irsync)
-[![Build Status](https://travis-ci.org/cjimti/irsync.svg?branch=master)](https://travis-ci.org/cjimti/irsync)
+[![irsync Release](https://img.shields.io/github/release/txn2/irsync.svg)](https://github.com/txn2/irsync/releases)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftxn2%2Firsync.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftxn2%2Firsync?ref=badge_shield)
+[![Maintainability](https://api.codeclimate.com/v1/badges/17e7ef41f16a004d020f/maintainability)](https://codeclimate.com/github/txn2/irsync/maintainability)
+[![Go Report Card](https://goreportcard.com/badge/github.com/txn2/irsync)](https://goreportcard.com/report/github.com/txn2/irsync)
+[![GoDoc](https://godoc.org/github.com/txn2/irsync/irsync?status.svg)](https://godoc.org/github.com/txn2/irsync/irsync)
+[![Build Status](https://travis-ci.org/txn2/irsync.svg?branch=master)](https://travis-ci.org/txn2/irsync)
 
-[![Docker Container Image Size](https://shields.beevelop.com/docker/image/image-size/cjimti/irsync/1.0.0.svg)](https://hub.docker.com/r/cjimti/irsync/)
-[![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/cjimti/irsync/1.0.0.svg)](https://hub.docker.com/r/cjimti/irsync/)
-[![Docker Container Pulls](https://img.shields.io/docker/pulls/cjimti/irsync.svg)](https://hub.docker.com/r/cjimti/irsync/)
+[![Docker Container Image Size](https://shields.beevelop.com/docker/image/image-size/txn2/irsync/1.0.0.svg)](https://hub.docker.com/r/txn2/irsync/)
+[![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/txn2/irsync/1.0.0.svg)](https://hub.docker.com/r/txn2/irsync/)
+[![Docker Container Pulls](https://img.shields.io/docker/pulls/txn2/irsync.svg)](https://hub.docker.com/r/txn2/irsync/)
 
 # Interval [rsync]
 
-Source: https://github.com/cjimti/irsync
+Source: https://github.com/txn2/irsync
 
 Command line utility and [Docker] container for running [rsync] on an interval. rsync, synchronizes (one way) files between two sources, **irsync** wrapps [rsync] and runs it on a specified interval.
 
@@ -42,7 +42,7 @@ touch ./data/source/test1.txt
 touch ./data/source/test2.txt
 
 # get the docker-compose.yml
-curl https://raw.githubusercontent.com/cjimti/irsync/master/docker-compose.yml >docker-compose.yml
+curl https://raw.githubusercontent.com/txn2/irsync/master/docker-compose.yml >docker-compose.yml
 
 # run docker-compose in the background (-d flag)
 docker-compose up -d
@@ -67,7 +67,7 @@ docker-compose rm
 
 **Install**
 ```bash
-brew tap cjimti/homebrew-tap
+brew tap txn2/homebrew-tap
 brew install irsync
 ```
 
@@ -97,14 +97,14 @@ go run ./irsync.go -pvrt --exclude='custom' --exclude='special.txt' --delete ./d
 #### Example #1 Local
 
 ```bash
-docker run --rm -v "$(pwd)"/data:/data cjimti/irsync \
+docker run --rm -v "$(pwd)"/data:/data txn2/irsync \
     -pvrt --delete /data/source/ /data/dest/
 ```
 
 #### Example #2 Local Every 10 Seconds
 
 ```bash
-docker run --rm -v "$(pwd)"/data:/data cjimti/irsync \
+docker run --rm -v "$(pwd)"/data:/data txn2/irsync \
     --irsync-interval-seconds=10 \
     -pvrt --delete /data/source/ /data/dest/
 ```
@@ -113,7 +113,7 @@ docker run --rm -v "$(pwd)"/data:/data cjimti/irsync \
 
 ```bash
 docker run -d --name irsync-demo --restart on-failure \
-    -v "$(pwd)"/data:/data cjimti/irsync \
+    -v "$(pwd)"/data:/data txn2/irsync \
     --irsync-interval-seconds=10 \
     -pvrt --delete /data/source/ /data/dest/
 ```
@@ -122,9 +122,9 @@ docker run -d --name irsync-demo --restart on-failure \
 
 Create `Dockerfile`:
 ```bash
-FROM cjimti/irsync:2.0.0
+FROM txn2/irsync:2.0.0
 LABEL vendor="mk.imti.co"
-LABEL co.imti.mk.source="https://github.com/cjimti/irsync"
+LABEL co.imti.mk.source="https://github.com/txn2/irsync"
 
 # if the rsync server requires a password
 ENV RSYNC_PASSWORD=password
@@ -200,4 +200,4 @@ goreleaser --skip-publish --rm-dist --skip-validate
 
 
 ## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcjimti%2Firsync.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcjimti%2Firsync?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftxn2%2Firsync.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftxn2%2Firsync?ref=badge_large)

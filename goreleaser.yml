@@ -47,7 +47,7 @@ dockers:
     goarch: amd64
     goarm: ''
     binary: irsync
-    image: cjimti/irsync
+    image: txn2/irsync
     dockerfile: dockerfiles/amd64/Dockerfile
     tag_templates:
     - latest
@@ -57,7 +57,7 @@ dockers:
     goarch: arm
     goarm: 6
     binary: irsync
-    image: cjimti/irsync
+    image: txn2/irsync
     dockerfile: dockerfiles/arm/Dockerfile
     tag_templates:
     - "armhf-{{ .Version }}"
@@ -66,7 +66,7 @@ brew:
   name: irsync
 
   github:
-    owner: cjimti
+    owner: txn2
     name: homebrew-tap
 
   commit_author:
@@ -78,6 +78,6 @@ brew:
   dependencies:
     - rsync
 
-  homepage: https://github.com/cjimti/irsync
+  homepage: https://github.com/txn2/irsync
 
   description: "Interval rsync."
