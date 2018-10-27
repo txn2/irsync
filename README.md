@@ -4,8 +4,6 @@
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftxn2%2Firsync.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftxn2%2Firsync?ref=badge_shield)
 [![Maintainability](https://api.codeclimate.com/v1/badges/17e7ef41f16a004d020f/maintainability)](https://codeclimate.com/github/txn2/irsync/maintainability)
 [![Go Report Card](https://goreportcard.com/badge/github.com/txn2/irsync)](https://goreportcard.com/report/github.com/txn2/irsync)
-[![GoDoc](https://godoc.org/github.com/txn2/irsync/irsync?status.svg)](https://godoc.org/github.com/txn2/irsync/irsync)
-[![Build Status](https://travis-ci.org/txn2/irsync.svg?branch=master)](https://travis-ci.org/txn2/irsync)
 
 # Interval [rsync]
 
