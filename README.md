@@ -7,10 +7,6 @@
 [![GoDoc](https://godoc.org/github.com/txn2/irsync/irsync?status.svg)](https://godoc.org/github.com/txn2/irsync/irsync)
 [![Build Status](https://travis-ci.org/txn2/irsync.svg?branch=master)](https://travis-ci.org/txn2/irsync)
 
-[![Docker Container Image Size](https://shields.beevelop.com/docker/image/image-size/txn2/irsync/1.0.0.svg)](https://hub.docker.com/r/txn2/irsync/)
-[![Docker Container Layers](https://shields.beevelop.com/docker/image/layers/txn2/irsync/1.0.0.svg)](https://hub.docker.com/r/txn2/irsync/)
-[![Docker Container Pulls](https://img.shields.io/docker/pulls/txn2/irsync.svg)](https://hub.docker.com/r/txn2/irsync/)
-
 # Interval [rsync]
 
 Source: https://github.com/txn2/irsync
@@ -21,7 +17,7 @@ As a basic command-line utility, the only requirement is [rsync]. As a [Docker] 
 
 ## Background
 
-I wrote up a little background on the motivation behind **irsync** on my [mk.imti.co] blog, [rSync Files on Interval](https://mk.imti.co/raspberry-pi-rsync-interval/).
+I wrote up a little background on the motivation behind **irsync** on my [imti.co] blog, [rSync Files on Interval](https://imti.co/raspberry-pi-rsync-interval/).
 
 
 ## Demo
@@ -196,7 +192,7 @@ goreleaser --skip-publish --rm-dist --skip-validate
 [Docker]: https://www.docker.com/
 [rsync]: https://en.wikipedia.org/wiki/Rsync
 [Tag]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
-[mk.imti.co]: https://mk.imti.co
+[imti.co]: https://imti.co
 
 
 ## License
